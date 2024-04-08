@@ -1,0 +1,21 @@
+.ToDoList {
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+  border: 3px solid green;
+}
+
+.ToDoList .addItem {
+  font-family: 'Courier New', Courier, monospace;
+  width: 50px;
+  /* height: 50px; */
+}
+
+.ToDoList input {
+
+  width: 200px width: 50px;
+  /* height: 50px */
+}
+
+.ToDoList .start-date {
+  font-size: 10px
+}

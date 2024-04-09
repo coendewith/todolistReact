@@ -1,7 +1,4 @@
 import { useState, useEffect } from 'react'
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
 function App() {
   // const [toDos, settoDos] = useState([])
 
@@ -49,6 +46,7 @@ function App() {
     if (inputValue != '') {
       settoDos([...toDos, { name: inputValue, date: (new Date()).toLocaleDateString('en-US', DATE_OPTIONS) }])
       setInputValue('');
+
     }
   };
 
@@ -78,6 +76,12 @@ function App() {
     }
   };
 
+  const deleteAllCompleted = () => {
+    if (confirm('Are you sure')) {
+      setCompleted([])
+    }
+  };
+
   var move = function (array, element, delta) {
     // Moves an item up or down
     var index = array.indexOf(element);
@@ -101,6 +105,9 @@ function App() {
 
   const handleCompleted = (i) => {
     const completedToDo = toDos[i]
+    const updatedDate = (new Date()).toLocaleDateString('en-US', DATE_OPTIONS)
+    toDos[i].date = updatedDate
+
     newCompleted = [completedToDo, ...newCompleted, ...completed]
     setCompleted(newCompleted)
 
@@ -126,7 +133,7 @@ function App() {
     <>
       <div className='ToDoList'>
         <h1>To Do List</h1>
-        <TextField id="standard-basic" label="Enter Task" variant="standard"
+        <input label="Enter Task" variant="standard"
           type="text"
           value={inputValue}
           placeholder='Enter Task'
@@ -135,29 +142,34 @@ function App() {
 
         <button className='addItem' onClick={addItem} >Add Item</button >
         <button className='deleteAll' onClick={deleteAll} >Delete All</button >
-        {
-          toDos.map((item, i) =>
-            <ol key={i}> {item.name}
-              <button onClick={() => deleteItem(i)}> ❌ </button>
-              <button onClick={() => updateTask(i)}> ✏️ </button>
-              <button onClick={() => handleMoveup(i)}> ⬆️ </button>
-              <button onClick={() => handleMoveDown(i)}> ⬇️ </button>
-              <button onClick={() => handleCompleted(i)}> ✅ </button>
 
-              <p className='start-date'>Last edit: {item.date}</p>
-            </ol>)
+        {toDos.map((item, i) =>
+          <ol key={i}> {item.name}
+            <button onClick={() => deleteItem(i)}> ❌ </button>
+            <button onClick={() => updateTask(i)}> ✏️ </button>
+            <button onClick={() => handleMoveup(i)}> ⬆️ </button>
+            <button onClick={() => handleMoveDown(i)}> ⬇️ </button>
+            <button onClick={() => handleCompleted(i)}> ✅ </button>
+
+            <p className='start-date'>Last edit: {item.date}</p>
+          </ol>)
         }
-        <h2>Completed Tasks</h2>
+        {(completed.length != 0) &&
+          <>
+            < h2 > Completed Tasks</h2>
+            <button className='deleteAll' onClick={deleteAllCompleted} >Delete All Completed</button >
+          </>
+        }
         {
           completed.map((item, i) =>
             <ol key={i} >{item.name}
               <button onClick={() => handleUncomplete(i)}> Uncomplete </button>
+              <p className='complete-date'>Completed on: {item.date}</p>
             </ol>
 
           )
         }
-
-      </div>
+      </div >
     </>
   )
 }

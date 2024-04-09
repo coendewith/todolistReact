@@ -1,21 +1,82 @@
+/* Base styles for the app */
 .ToDoList {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Arial', sans-serif;
+  /* More modern font */
   text-align: center;
-  border: 3px solid green;
+  border: 3px solid #454444;
+  /* Softer green color */
+  margin: 20px auto;
+  /* Centering the ToDoList */
+  max-width: 600px;
+  /* Limiting the width for better readability */
+  padding: 20px;
+  /* Adding some padding inside the border */
+  border-radius: 10px;
+  /* Soften the edges */
+  background-color: #f3f3f3;
+  /* Light background for the app */
 }
 
-.ToDoList .addItem {
-  font-family: 'Courier New', Courier, monospace;
-  width: 50px;
-  /* height: 50px; */
+/* Style adjustments for text input and buttons */
+.ToDoList input[type="text"],
+.ToDoList button {
+  font-family: 'Arial', sans-serif;
+  padding: 10px;
+  margin: 5px;
+  border: 2px solid #3e3e3e;
+  /* Matching border color */
+  border-radius: 5px;
+  /* Rounded corners for inputs and buttons */
+  background-color: #fff;
+  /* White background */
+  cursor: pointer;
+  /* Hand cursor on buttons */
 }
 
-.ToDoList input {
-
-  width: 200px width: 50px;
-  /* height: 50px */
+.ToDoList button:hover {
+  background-color: #3e3e3e;
+  /* Change color on hover for buttons */
+  color: white;
+  /* White text on hover */
 }
 
-.ToDoList .start-date {
-  font-size: 10px
+.ToDoList input[type="text"] {
+  width: 60%;
+  /* Adjust input width */
+  margin-bottom: 20px;
+  /* Spacing below the input field */
+}
+
+/* Styles for the task items */
+.ToDoList ol {
+  text-align: left;
+  /* Align text to the left for better readability */
+  margin: 10px auto;
+  /* Centering items */
+  padding: 10px;
+  /* Space around items */
+  border-bottom: 1px solid #ddd;
+  /* Separator between items */
+}
+
+.ToDoList ol:last-child {
+  border-bottom: none;
+  /* Remove border for the last item */
+}
+
+/* Styles for date text */
+.ToDoList .start-date,
+.ToDoList .complete-date {
+  font-size: 12px;
+  /* Slightly larger for better readability */
+  color: #666;
+  /* Darker grey for contrast */
+}
+
+/* Special styles for completed tasks to distinguish them */
+.completed {
+  text-decoration: line-through;
+  /* Cross out completed tasks */
+  color: #aaa;
+  /* Grey out completed tasks */
 }

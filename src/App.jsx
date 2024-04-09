@@ -2,19 +2,15 @@ import { useState, useEffect } from 'react'
 function App() {
   // const [toDos, settoDos] = useState([])
 
-
   const [toDos, settoDos] = useState(() => {
     const savedToDos = localStorage.getItem('toDos');
     return savedToDos ? JSON.parse(savedToDos) : [];
   });
 
-
-
   const [completed, setCompleted] = useState(() => {
     const savedCompleted = localStorage.getItem('completed');
     return savedCompleted ? JSON.parse(savedCompleted) : [];
   });
-
 
   const [inputValue, setInputValue] = useState('');
 
@@ -28,9 +24,6 @@ function App() {
     // Store completed state in localStorage whenever it changes
     localStorage.setItem('completed', JSON.stringify(completed));
   }, [completed]);
-
-
-
 
   const DATE_OPTIONS = { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric' };
 
@@ -46,7 +39,6 @@ function App() {
     if (inputValue != '') {
       settoDos([...toDos, { name: inputValue, date: (new Date()).toLocaleDateString('en-US', DATE_OPTIONS) }])
       setInputValue('');
-
     }
   };
 
@@ -54,12 +46,10 @@ function App() {
     // console.log('hello world')
     const updatedName = prompt('Update the task name:', toDos[i].name)
     const updatedDate = (new Date()).toLocaleDateString('en-US', DATE_OPTIONS)
-    if (updatedName !== '') {
+    if (updatedName !== '' && updatedName !== null {
       toDos[i].name = updatedName
       toDos[i].date = updatedDate
     }
-
-
     settoDos([...toDos])
   }
 
@@ -150,7 +140,6 @@ function App() {
             <button onClick={() => handleMoveup(i)}> ⬆️ </button>
             <button onClick={() => handleMoveDown(i)}> ⬇️ </button>
             <button onClick={() => handleCompleted(i)}> ✅ </button>
-
             <p className='start-date'>Last edit: {item.date}</p>
           </ol>)
         }

@@ -46,7 +46,7 @@ function App() {
     // console.log('hello world')
     const updatedName = prompt('Update the task name:', toDos[i].name)
     const updatedDate = (new Date()).toLocaleDateString('en-US', DATE_OPTIONS)
-    if (updatedName !== '' && updatedName !== null {
+    if (updatedName !== '' && updatedName !== null) {
       toDos[i].name = updatedName
       toDos[i].date = updatedDate
     }
